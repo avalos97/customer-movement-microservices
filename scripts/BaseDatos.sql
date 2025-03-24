@@ -38,7 +38,7 @@ CREATE TABLE movimiento (
     tipo_movimiento VARCHAR(50) NOT NULL,
     valor NUMERIC(12,2) NOT NULL, 
     saldo NUMERIC(12,2) NOT NULL,
-    estado BOOLEAN DEFAULT TRUE
+    estado BOOLEAN DEFAULT TRUE,
     CONSTRAINT fk_cuenta FOREIGN KEY (cuenta_id) REFERENCES cuenta(id) ON DELETE CASCADE
 );
 

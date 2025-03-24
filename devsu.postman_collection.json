@@ -1,0 +1,424 @@
+{
+	"info": {
+		"_postman_id": "0c0a0674-1ad8-4c93-998d-82a9f4b562d5",
+		"name": "PRUEBA TECNICA DEVSU - JAVA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19949524"
+	},
+	"item": [
+		{
+			"name": "CLIENTES",
+			"item": [
+				{
+					"name": "CREATE_CLIENT",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\":\"JOSE MERINO\",\n    \"genero\":\"MASCULINO\",\n    \"edad\":25,\n    \"identificacion\":\"908887766533\",\n    \"direccion\":\"Col Esmeralda Casa 23\",\n    \"telefono\":\"766534272\",\n    \"contrasena\":\"pass\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/customer-service/clientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customer-service",
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE_CLIENT",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"testoo\",\n    \"genero\": \"MASCULINO\",\n    \"edad\": 25,\n    \"identificacion\": \"90888776688\",\n    \"direccion\": \"Col Esmeralda Casa 23\",\n    \"telefono\": \"766534272\",\n    \"contrasena\": \"pass 2\",\n    \"estado\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/customer-service/clientes/ca1a9de9-e7e1-4b0a-89a7-8773767d3dd9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customer-service",
+								"clientes",
+								"ca1a9de9-e7e1-4b0a-89a7-8773767d3dd9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET_CLIENT",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/customer-service/clientes/ca1a9de9-e7e1-4b0a-89a7-8773767d3dd9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customer-service",
+								"clientes",
+								"ca1a9de9-e7e1-4b0a-89a7-8773767d3dd9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE_CLIENT",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/customer-service/clientes/2b10791d-601e-4cc1-8980-c28bb8b90daa",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customer-service",
+								"clientes",
+								"2b10791d-601e-4cc1-8980-c28bb8b90daa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET_ALL_CLIENTS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/customer-service/clientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customer-service",
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CLIENT WITH ACCOUNT",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\":\"test\",\n    \"genero\":\"MASCULINO\",\n    \"edad\":25,\n    \"identificacion\":\"90888776688\",\n    \"direccion\":\"Col Esmeralda Casa 23\",\n    \"telefono\":\"766534272\",\n    \"contrasena\":\"pass\",\n    \"account\":{\n        \"numeroCuenta\":654325,\n        \"tipoCuenta\":\"CORRIENTE\",\n        \"saldoInicial\":1000\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/customer-service/clientes/whit-account",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customer-service",
+								"clientes",
+								"whit-account"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CUENTAS",
+			"item": [
+				{
+					"name": "CREATE_ACCOUNT",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"numeroCuenta\":749362,\n    \"clienteId\":\"ca1a9de9-e7e1-4b0a-89a7-8773767d3dd9\",\n    \"tipoCuenta\":\"CORRIENTE\",\n    \"saldoInicial\":1000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/movement-service/cuentas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"movement-service",
+								"cuentas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MOVEMENT_BY_ACCOUNT",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"valor\": 100\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/movement-service/cuentas/01918788-af03-4195-89c0-b6c4f5244fde/movimiento",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"movement-service",
+								"cuentas",
+								"01918788-af03-4195-89c0-b6c4f5244fde",
+								"movimiento"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EDIT_ACCOUNT",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"numeroCuenta\":749377,\n    \"clienteId\":\"ca1a9de9-e7e1-4b0a-89a7-8773767d3dd9\",\n    \"tipoCuenta\":\"CORRIENTE\",\n    \"saldoInicial\":1000,\n    \"estado\":true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/movement-service/cuentas/01918788-af03-4195-89c0-b6c4f5244fde",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"movement-service",
+								"cuentas",
+								"01918788-af03-4195-89c0-b6c4f5244fde"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET_ACCOUNT",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/movement-service/cuentas/01918788-af03-4195-89c0-b6c4f5244fde",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"movement-service",
+								"cuentas",
+								"01918788-af03-4195-89c0-b6c4f5244fde"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET_ALL_ACCOUNT",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/movement-service/cuentas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"movement-service",
+								"cuentas"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "MOVEMENTS",
+			"item": [
+				{
+					"name": "GET_MOVEMENTS_BY_ACCOUNT",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/movement-service/movimientos?cuentaId=01918788-af03-4195-89c0-b6c4f5244fde",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"movement-service",
+								"movimientos"
+							],
+							"query": [
+								{
+									"key": "cuentaId",
+									"value": "01918788-af03-4195-89c0-b6c4f5244fde"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET_MOVEMENTS_BY_ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/movement-service/movimientos/ee409a61-704d-4e74-95e5-755b32c3c9f5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"movement-service",
+								"movimientos",
+								"ee409a61-704d-4e74-95e5-755b32c3c9f5"
+							],
+							"query": [
+								{
+									"key": "cuentaId",
+									"value": "01918788-af03-4195-89c0-b6c4f5244fde",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "REPORT",
+			"item": [
+				{
+					"name": "MOVEMENT_BY_CLIENT",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/movement-service/reportes?clienteId=2746fef3-2155-470d-9c29-743a30f1550e&fechaInicio=22-03-2025 00:00:00&fechaFin=24-03-2025 23:59:59",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"movement-service",
+								"reportes"
+							],
+							"query": [
+								{
+									"key": "clienteId",
+									"value": "2746fef3-2155-470d-9c29-743a30f1550e"
+								},
+								{
+									"key": "fechaInicio",
+									"value": "22-03-2025 00:00:00"
+								},
+								{
+									"key": "fechaFin",
+									"value": "24-03-2025 23:59:59"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

@@ -14,7 +14,7 @@ import com.devsu.res.movement_service.adapter.outbound.persistence.entity.Accoun
 @Repository
 public interface AccountJpaRepository extends JpaRepository<AccountEntity, UUID> {
 
-       @Query("SELECT c FROM CuentaEntity c " +
+       @Query("SELECT c FROM AccountEntity c " +
                      "INNER JOIN FETCH c.movimientos m " +
                      "WHERE c.clienteId = :clienteId " +
                      "AND (m IS NULL OR (m.fecha BETWEEN :fechaInicio AND :fechaFin))")
@@ -23,7 +23,7 @@ public interface AccountJpaRepository extends JpaRepository<AccountEntity, UUID>
                      @Param("fechaInicio") LocalDateTime fechaInicio,
                      @Param("fechaFin") LocalDateTime fechaFin);
 
-       @Query("SELECT DISTINCT c FROM CuentaEntity c LEFT JOIN FETCH c.movimientos WHERE c.clienteId = :clienteId")
+       @Query("SELECT DISTINCT c FROM AccountEntity c LEFT JOIN FETCH c.movimientos WHERE c.clienteId = :clienteId")
        List<AccountEntity> findByClientIdWithMovements(@Param("clienteId") UUID clienteId);
 
 }

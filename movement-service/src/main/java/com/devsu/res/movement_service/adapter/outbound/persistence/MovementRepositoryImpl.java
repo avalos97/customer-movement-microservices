@@ -39,7 +39,7 @@ public class MovementRepositoryImpl implements MovementRepositoryPort {
 
     @Override
     public List<Movement> findByAccountId(UUID cuentaId) {
-        return movementJpaRepository.findByAccountId(cuentaId).stream()
+        return movementJpaRepository.findByCuentaId(cuentaId).stream()
                 .map(entity -> modelMapper.map(entity, Movement.class))
                 .collect(Collectors.toList());
     }

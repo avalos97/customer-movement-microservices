@@ -10,5 +10,5 @@ import com.devsu.res.movement_service.adapter.outbound.persistence.entity.Moveme
 
 @Repository
 public interface MovementJpaRepository extends JpaRepository<MovementEntity, UUID> {
-    List<MovementEntity> findByAccountId(UUID cuentaId);
+    List<MovementEntity> findByCuentaId(UUID cuentaId);
 }

@@ -1,0 +1,25 @@
+server:
+    port: 8080
+    servlet:
+        context-path: /customer-service
+spring:
+    datasource:
+        url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1
+        driver-class-name: org.h2.Driver
+        username: sa
+        password:
+    jpa:
+        hibernate:
+            ddl-auto: update
+        properties:
+            hibernate:
+            dialect: org.hibernate.dialect.H2Dialect
+
+kafka:
+    bootstrap-servers: localhost:9092
+    group:
+        id: test-group
+    topic:
+        client: client-topic
+customer-service:
+    url: http://localhost:8080/customer-service

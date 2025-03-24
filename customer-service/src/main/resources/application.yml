@@ -1,0 +1,31 @@
+server:
+    port: 8080
+    servlet:
+        context-path: /customer-service
+spring:
+    application:
+        name: customer-service
+    datasource:
+        url: jdbc:postgresql://db-prueba-devsu:5432/devsu_db
+        username: devsu_user
+        password: devsuPass2@2S
+        driver-class-name: org.postgresql.Driver
+    jpa:
+        hibernate:
+            ddl-auto: none
+        properties:
+            hibernate:
+            dialect: org.hibernate.dialect.PostgreSQLDialect
+
+kafka:
+    bootstrap-servers: kafka:9092
+    group:
+        id: devsu-kafka-group
+    topic:
+        client: devsu-kafka-topic
+
+logging:
+    level:
+        root: INFO
+        com.devsu.res.customer_service.adapter.inbound.controller: DEBUG 
+        com.devsu.res.customer_service.adapter.inbound.aop: DEBUG 

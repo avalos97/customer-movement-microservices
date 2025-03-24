@@ -1,0 +1,76 @@
+version: "3"
+services:
+    db-prueba-devsu:
+        container_name: db-prueba-devsu
+        image: postgres:16.8-alpine3.20
+        environment:
+            POSTGRES_DB: devsu_db
+            POSTGRES_USER: devsu_user
+            POSTGRES_PASSWORD: devsuPass2@2S
+        volumes:
+            - devsu_data:/var/lib/postgresql/data
+            - ./scripts/BaseDatos.sql:/docker-entrypoint-initdb.d/init-devsu-db.sql
+        ports:
+            - "5432:5432"
+        networks:
+            - devsu-net
+    
+    zookeeper:
+        image: confluentinc/cp-zookeeper:7.5.0
+        container_name: zookeeper
+        environment:
+            ZOOKEEPER_CLIENT_PORT: 2181
+            ZOOKEEPER_TICK_TIME: 2000
+            ZOOKEEPER_SYNC_LIMIT: 2
+        ports:
+            - "2181:2181"
+        networks:
+            - devsu-net
+
+    kafka:
+        image: confluentinc/cp-kafka:7.5.0
+        container_name: kafka
+        depends_on:
+            - zookeeper
+        environment:
+            KAFKA_BROKER_ID: 1
+            KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+            KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
+            KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+            KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+        ports:
+            - "9092:9092"
+        networks:
+            - devsu-net
+
+    customer-service:
+        build:
+            context: ./customer-service
+            dockerfile: Dockerfile
+        image: customer-service:latest
+        ports:
+            - "8080:8080"
+        depends_on:
+            - db-prueba-devsu
+            - kafka
+        networks:
+            - devsu-net
+
+    movement-service:
+        build:
+            context: ./movement-service
+            dockerfile: Dockerfile
+        image: movement-service:latest
+        ports:
+            - "8081:8081"
+        depends_on:
+            - db-prueba-devsu
+            - kafka
+        networks:
+            - devsu-net
+
+networks:
+    devsu-net:
+
+volumes:
+    devsu_data: 

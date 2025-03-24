@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class MovimientoRequestDTO {
+public class MovementRequestDTO {
     private UUID cuentaId;
     @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate fecha;

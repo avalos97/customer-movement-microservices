@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "cuenta", schema = "public", catalog = "devsu_db")
-public class CuentaEntity {
+public class AccountEntity {
 
     @Id
     @GeneratedValue(generator = "UUID")
@@ -45,5 +45,5 @@ public class CuentaEntity {
     private Boolean estado;
 
     @OneToMany(mappedBy = "cuenta", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private List<MovimientoEntity> movimientos;
+    private List<MovementEntity> movimientos;
 }

@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CuentaRequestDTO {
+public class AccountRequestDTO {
     @NotNull(message = "no debe ser nulo")
     @Digits(integer = 6, fraction = 0, message = "El número de cuenta debe tener 6 dígitos")
     private Long numeroCuenta;

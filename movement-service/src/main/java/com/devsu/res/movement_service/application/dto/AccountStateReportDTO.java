@@ -11,15 +11,15 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ReporteEstadoCuentaDTO {
+public class AccountStateReportDTO {
     private UUID clienteId;
     private String clienteNombre;
-    private List<CuentaReporteDTO> cuentas;
+    private List<ReportAccountDTO> cuentas;
 
     @Data
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class CuentaReporteDTO {
+    public static class ReportAccountDTO {
         private UUID cuentaId;
         private Long numeroCuenta;
         private String tipoCuenta;

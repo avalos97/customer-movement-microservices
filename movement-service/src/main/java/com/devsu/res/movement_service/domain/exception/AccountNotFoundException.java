@@ -3,13 +3,13 @@ package com.devsu.res.movement_service.domain.exception;
 import com.devsu.res.movement_service.common.constant.ErrorCode;
 
 /**
- * Excepción lanzada cuando no se encuentra un movimiento.
+ * Excepción lanzada cuando no se encuentra una cuenta.
  */
-public class MovimientoNotFoundException extends DomainException {
+public class AccountNotFoundException extends DomainException {
 
     private final ErrorCode errorCode;
 
-    public MovimientoNotFoundException(ErrorCode errorCode, String message) {
+    public AccountNotFoundException(ErrorCode errorCode, String message) {
         super(message);
         this.errorCode = errorCode;
     }

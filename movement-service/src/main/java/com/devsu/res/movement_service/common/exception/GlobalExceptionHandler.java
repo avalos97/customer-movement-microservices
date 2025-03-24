@@ -13,17 +13,17 @@ import com.devsu.res.movement_service.common.constant.ApiStatus;
 import com.devsu.res.movement_service.common.constant.ErrorCode;
 import com.devsu.res.movement_service.common.response.ApiResponse;
 import com.devsu.res.movement_service.common.response.ErrorDetails;
-import com.devsu.res.movement_service.domain.exception.CuentaNotFoundException;
+import com.devsu.res.movement_service.domain.exception.AccountNotFoundException;
 import com.devsu.res.movement_service.domain.exception.DomainException;
-import com.devsu.res.movement_service.domain.exception.MovimientoNotFoundException;
-import com.devsu.res.movement_service.domain.exception.SaldoNoDisponibleException;
+import com.devsu.res.movement_service.domain.exception.MovementNotFoundException;
+import com.devsu.res.movement_service.domain.exception.BalanceNotAvailableException;
 
 import jakarta.servlet.http.HttpServletRequest;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler({CuentaNotFoundException.class, MovimientoNotFoundException.class})
+    @ExceptionHandler({AccountNotFoundException.class, MovementNotFoundException.class})
     public ResponseEntity<ApiResponse<ErrorDetails>> handleNotFoundException(DomainException ex, HttpServletRequest request) {
         ErrorDetails errorDetails = new ErrorDetails(
                 ex.getErrorCode() != null ? ex.getErrorCode().getErrCode() : ErrorCode.RESOURCE_NOT_FOUND.getErrCode(),
@@ -35,8 +35,8 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(SaldoNoDisponibleException.class)
-    public ResponseEntity<ApiResponse<ErrorDetails>> handleSaldoNoDisponibleException(SaldoNoDisponibleException ex, HttpServletRequest request) {
+    @ExceptionHandler(BalanceNotAvailableException.class)
+    public ResponseEntity<ApiResponse<ErrorDetails>> handleSaldoNoDisponibleException(BalanceNotAvailableException ex, HttpServletRequest request) {
         ErrorDetails errorDetails = new ErrorDetails(
                 ex.getErrorCode() != null ? ex.getErrorCode().getErrCode() : ErrorCode.ILLEGAL_ARGUMENT_EXCEPTION.getErrCode(),
                 request.getRequestURI(),

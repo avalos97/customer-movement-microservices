@@ -6,9 +6,9 @@ import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.devsu.res.movement_service.adapter.outbound.persistence.entity.MovimientoEntity;
+import com.devsu.res.movement_service.adapter.outbound.persistence.entity.MovementEntity;
 
 @Repository
-public interface MovimientoJpaRepository extends JpaRepository<MovimientoEntity, UUID> {
-    List<MovimientoEntity> findByCuentaId(UUID cuentaId);
+public interface MovementJpaRepository extends JpaRepository<MovementEntity, UUID> {
+    List<MovementEntity> findByAccountId(UUID cuentaId);
 }

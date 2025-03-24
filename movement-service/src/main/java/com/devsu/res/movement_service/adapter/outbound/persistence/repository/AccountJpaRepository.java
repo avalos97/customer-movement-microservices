@@ -9,21 +9,21 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.devsu.res.movement_service.adapter.outbound.persistence.entity.CuentaEntity;
+import com.devsu.res.movement_service.adapter.outbound.persistence.entity.AccountEntity;
 
 @Repository
-public interface CuentaJpaRepository extends JpaRepository<CuentaEntity, UUID> {
+public interface AccountJpaRepository extends JpaRepository<AccountEntity, UUID> {
 
        @Query("SELECT c FROM CuentaEntity c " +
                      "INNER JOIN FETCH c.movimientos m " +
                      "WHERE c.clienteId = :clienteId " +
                      "AND (m IS NULL OR (m.fecha BETWEEN :fechaInicio AND :fechaFin))")
-       List<CuentaEntity> findCuentasWithMovimientosByClienteAndFecha(
+       List<AccountEntity> findAccountsWithMovementsByClientAndDate(
                      @Param("clienteId") UUID clienteId,
                      @Param("fechaInicio") LocalDateTime fechaInicio,
                      @Param("fechaFin") LocalDateTime fechaFin);
 
        @Query("SELECT DISTINCT c FROM CuentaEntity c LEFT JOIN FETCH c.movimientos WHERE c.clienteId = :clienteId")
-       List<CuentaEntity> findByClienteIdWithMovimientos(@Param("clienteId") UUID clienteId);
+       List<AccountEntity> findByClientIdWithMovements(@Param("clienteId") UUID clienteId);
 
 }

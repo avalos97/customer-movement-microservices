@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "movimiento")
-public class MovimientoEntity {
+public class MovementEntity {
 
     @Id
     @GeneratedValue(generator = "UUID")
@@ -31,7 +31,7 @@ public class MovimientoEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cuenta_id", nullable = false)
-    private CuentaEntity cuenta;
+    private AccountEntity cuenta;
 
     @Column(name = "fecha", nullable = false)
     private LocalDateTime fecha;

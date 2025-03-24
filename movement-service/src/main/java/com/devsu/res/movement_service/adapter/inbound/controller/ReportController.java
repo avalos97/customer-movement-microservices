@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.devsu.res.movement_service.application.dto.ReporteEstadoCuentaDTO;
-import com.devsu.res.movement_service.application.usecase.ReporteUseCase;
+import com.devsu.res.movement_service.application.dto.AccountStateReportDTO;
+import com.devsu.res.movement_service.application.usecase.ReportUseCase;
 import com.devsu.res.movement_service.common.constant.ApiStatus;
 import com.devsu.res.movement_service.common.response.ApiResponse;
 import com.devsu.res.movement_service.common.util.DateUtil;
@@ -20,18 +20,18 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("/reportes")
 @RequiredArgsConstructor
-public class ReporteController {
+public class ReportController {
 
-    private final ReporteUseCase reporteUseCase;
+    private final ReportUseCase reportUseCase;
 
     @GetMapping
-    public ResponseEntity<ApiResponse<ReporteEstadoCuentaDTO>> generarReporte(@RequestParam("fechaInicio") String fechaInicio,
+    public ResponseEntity<ApiResponse<AccountStateReportDTO>> generateReport(@RequestParam("fechaInicio") String fechaInicio,
                                                                               @RequestParam("fechaFin") String fechaFin,
                                                                               @RequestParam("clienteId") UUID clienteId) {
         LocalDate inicio = DateUtil.parse(fechaInicio).toLocalDate();
         LocalDate fin = DateUtil.parse(fechaFin).toLocalDate();
-        ReporteEstadoCuentaDTO reporte = reporteUseCase.generarReporteEstadoCuenta(inicio, fin, clienteId);
-        ApiResponse<ReporteEstadoCuentaDTO> response = new ApiResponse<>(reporte, "Reporte generado exitosamente", ApiStatus.SUCCESS.name());
+        AccountStateReportDTO reporte = reportUseCase.generateAccountStateReport(inicio, fin, clienteId);
+        ApiResponse<AccountStateReportDTO> response = new ApiResponse<>(reporte, "Reporte generado exitosamente", ApiStatus.SUCCESS.name());
         return ResponseEntity.ok(response);
     }
 }

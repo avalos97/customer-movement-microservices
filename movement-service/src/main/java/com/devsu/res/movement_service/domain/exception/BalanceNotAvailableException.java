@@ -6,11 +6,11 @@ import com.devsu.res.movement_service.common.constant.ErrorCode;
  * Excepción lanzada cuando se intenta realizar un movimiento y no hay saldo
  * suficiente.
  */
-public class SaldoNoDisponibleException extends DomainException {
+public class BalanceNotAvailableException extends DomainException {
     
     private final ErrorCode errorCode;
 
-    public SaldoNoDisponibleException(ErrorCode errorCode, String message) {
+    public BalanceNotAvailableException(ErrorCode errorCode, String message) {
         super(message);
         this.errorCode = errorCode;
     }

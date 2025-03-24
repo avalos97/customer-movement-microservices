@@ -11,12 +11,12 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Cuenta {
+public class Account {
     private UUID id;
     private Long numeroCuenta;       
     private UUID clienteId;         
     private String tipoCuenta;       
     private BigDecimal saldoInicial;
     private Boolean estado;
-    private List<Movimiento> movimientos; 
+    private List<Movement> movimientos; 
 }

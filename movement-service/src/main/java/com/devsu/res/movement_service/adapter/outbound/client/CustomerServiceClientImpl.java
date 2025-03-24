@@ -21,7 +21,7 @@ public class CustomerServiceClientImpl implements CustomerServiceClient {
     private String clientPath;
 
     @Override
-    public CustomerResponseDTO getClienteById(UUID id) {
+    public CustomerResponseDTO getClientById(UUID id) {
         ApiResponse<CustomerResponseDTO> response = webClient.get()
                 .uri(clientPath, id)
                 .retrieve()

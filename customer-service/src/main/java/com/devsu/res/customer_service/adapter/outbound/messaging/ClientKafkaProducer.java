@@ -12,18 +12,18 @@ import lombok.RequiredArgsConstructor;
 
 @Component
 @RequiredArgsConstructor
-public class ClienteKafkaProducer {
+public class ClientKafkaProducer {
 
     private final KafkaTemplate<String, String> kafkaTemplate;
     private final ObjectMapper objectMapper;
     
     @Value("${kafka.topic.client}")
-    private String clienteTopic;
+    private String clientTopic;
 
-    public void sendAccountMessage(AccountRequestDTO cuentaRequestDTO) {
+    public void sendAccountMessage(AccountRequestDTO accountRequestDTO) {
         try {
-            String json = objectMapper.writeValueAsString(cuentaRequestDTO);
-            kafkaTemplate.send(clienteTopic, json);
+            String json = objectMapper.writeValueAsString(accountRequestDTO);
+            kafkaTemplate.send(clientTopic, json);
         } catch (JsonProcessingException e) {
             throw new RuntimeException("Error serializando CuentaRequestDTO", e);
         }

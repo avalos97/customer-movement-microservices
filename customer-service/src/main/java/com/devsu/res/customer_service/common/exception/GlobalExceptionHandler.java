@@ -13,7 +13,7 @@ import com.devsu.res.customer_service.common.constant.ApiStatus;
 import com.devsu.res.customer_service.common.constant.ErrorCode;
 import com.devsu.res.customer_service.common.response.ApiResponse;
 import com.devsu.res.customer_service.common.response.ErrorDetails;
-import com.devsu.res.customer_service.domain.exception.ClienteNotFoundException;
+import com.devsu.res.customer_service.domain.exception.ClientNotFoundException;
 import com.devsu.res.customer_service.domain.exception.DomainException;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,8 +21,8 @@ import jakarta.servlet.http.HttpServletRequest;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(ClienteNotFoundException.class)
-    public ResponseEntity<ApiResponse<ErrorDetails>> handleClienteNotFoundException(ClienteNotFoundException ex,
+    @ExceptionHandler(ClientNotFoundException.class)
+    public ResponseEntity<ApiResponse<ErrorDetails>> handleClienteNotFoundException(ClientNotFoundException ex,
             HttpServletRequest request) {
         ErrorDetails errorDetails = new ErrorDetails(
                 ex.getErrorCode().getErrCode(),

@@ -1,4 +1,4 @@
-package com.devsu.res.customer_service.application.dto;
+package com.devsu.res.customer_service.domain.model;
 
 import java.util.UUID;
 
@@ -9,17 +9,12 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ClienteResponseDTO {
+public class Person {
     private UUID id;
-    // Datos de Persona
     private String nombre;
     private String genero;
     private Integer edad;
     private String identificacion;
     private String direccion;
     private String telefono;
-    
-    // Datos específicos de Cliente
-    private String contrasena;
-    private Boolean estado;
 }

@@ -1,15 +1,14 @@
-package com.devsu.res.customer_service.domain.model;
+package com.devsu.res.customer_service.application.dto;
 
 import java.util.UUID;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Persona {
+public class PersonDTO {
     private UUID id;
     private String nombre;
     private String genero;

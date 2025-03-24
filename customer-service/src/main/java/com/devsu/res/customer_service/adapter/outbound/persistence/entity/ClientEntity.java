@@ -17,12 +17,12 @@ import lombok.Setter;
 @Entity
 @Table(name = "cliente")
 @PrimaryKeyJoinColumn(name = "persona_id")
-public class ClienteEntity extends PersonaEntity {
+public class ClientEntity extends PersonEntity {
 
     private String contrasena;
     private Boolean estado;
 
-    public ClienteEntity(UUID id, String nombre, String genero, Integer edad, String identificacion,
+    public ClientEntity(UUID id, String nombre, String genero, Integer edad, String identificacion,
             String direccion, String telefono, String contrasena, Boolean estado) {
         super(id, nombre, genero, edad, identificacion, direccion, telefono);
         this.contrasena = contrasena;

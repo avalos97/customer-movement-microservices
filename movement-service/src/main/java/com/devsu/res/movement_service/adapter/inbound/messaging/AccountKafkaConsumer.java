@@ -22,11 +22,11 @@ public class AccountKafkaConsumer {
     public void consume(String message) {
         log.info("Mensaje recibido en CuentaKafkaConsumer: {}", message);
         try {
-            AccountRequestDTO cuentaRequestDTO = objectMapper.readValue(message, AccountRequestDTO.class);
-            Runnable action = switch (cuentaRequestDTO.getOperation().toUpperCase()) {
-                case "DELETE" -> () -> accountUseCase.deleteAccountByClientId(cuentaRequestDTO.getClienteId());
-                case "UPDATE_STATUS" -> () -> accountUseCase.updateAccountStatusByClientId(cuentaRequestDTO.getClienteId(), cuentaRequestDTO.getEstado());
-                default -> () -> accountUseCase.createAccount(cuentaRequestDTO);
+            AccountRequestDTO accountRequestDTO = objectMapper.readValue(message, AccountRequestDTO.class);
+            Runnable action = switch (accountRequestDTO.getOperation().toUpperCase()) {
+                case "DELETE" -> () -> accountUseCase.deleteAccountByClientId(accountRequestDTO.getClienteId());
+                case "UPDATE_STATUS" -> () -> accountUseCase.updateAccountStatusByClientId(accountRequestDTO.getClienteId(), accountRequestDTO.getEstado());
+                default -> () -> accountUseCase.createAccount(accountRequestDTO);
             };
             action.run();
         } catch (Exception e) {

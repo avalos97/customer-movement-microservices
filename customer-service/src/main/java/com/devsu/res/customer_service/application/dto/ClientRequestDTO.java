@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ClienteRequestDTO {
+public class ClientRequestDTO {
     @NotBlank(message = "El nombre no debe ser nulo")
     private String nombre;
 

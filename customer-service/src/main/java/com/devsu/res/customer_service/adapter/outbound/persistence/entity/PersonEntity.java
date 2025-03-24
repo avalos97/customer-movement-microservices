@@ -23,7 +23,7 @@ import lombok.Setter;
 @Entity
 @Table(name = "persona")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class PersonaEntity {
+public class PersonEntity {
 
     @Id
     @GeneratedValue(generator = "UUID")

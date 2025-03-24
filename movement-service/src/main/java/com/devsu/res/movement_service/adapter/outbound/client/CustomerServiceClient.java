@@ -6,5 +6,5 @@ import com.devsu.res.movement_service.application.dto.client.CustomerResponseDTO
 
 
 public interface CustomerServiceClient {
-    CustomerResponseDTO getClienteById(UUID id);
+    CustomerResponseDTO getClientById(UUID id);
 }

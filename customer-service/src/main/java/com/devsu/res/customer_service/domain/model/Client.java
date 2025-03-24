@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class Cliente extends Persona {
+public class Client extends Person {
     private String contrasena;
     private Boolean estado;
 }

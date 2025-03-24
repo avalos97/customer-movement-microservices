@@ -7,10 +7,10 @@ import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
 
-public class ClienteEntityTest {
+public class ClientEntityTest {
 
     @Test
-    public void testClienteEntityCreation() {
+    public void testClientEntityCreation() {
         UUID id = UUID.randomUUID();
 
         String nombre = "Juan Pérez";
@@ -23,7 +23,7 @@ public class ClienteEntityTest {
         String contrasena = "secret";
         Boolean estado = true;
         
-        ClienteEntity cliente = new ClienteEntity(
+        ClientEntity cliente = new ClientEntity(
                 id,
                 nombre,
                 genero,

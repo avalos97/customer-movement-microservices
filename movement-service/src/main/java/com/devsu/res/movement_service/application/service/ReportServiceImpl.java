@@ -55,7 +55,7 @@ public AccountStateReportDTO generateAccountStateReport(LocalDate initDate, Loca
         throw new MovementNotFoundException(ErrorCode.MOVEMENT_NOT_FOUND, "No se encontraron movimientos para el cliente en el rango de fechas especificado");
     }
 
-    CustomerResponseDTO customer = customerServiceClient.getClienteById(clientId);
+    CustomerResponseDTO customer = customerServiceClient.getClientById(clientId);
 
     AccountStateReportDTO report = new AccountStateReportDTO();
     report.setClienteId(clientId);

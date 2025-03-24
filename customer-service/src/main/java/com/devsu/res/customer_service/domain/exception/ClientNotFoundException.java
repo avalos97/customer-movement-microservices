@@ -2,11 +2,11 @@ package com.devsu.res.customer_service.domain.exception;
 
 import com.devsu.res.customer_service.common.constant.ErrorCode;
 
-public class ClienteNotFoundException extends DomainException {
+public class ClientNotFoundException extends DomainException {
     
     private final ErrorCode errorCode;
     
-    public ClienteNotFoundException(ErrorCode errorCode, String message) {
+    public ClientNotFoundException(ErrorCode errorCode, String message) {
         super(message);
         this.errorCode = errorCode;
     }

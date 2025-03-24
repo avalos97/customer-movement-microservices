@@ -27,4 +27,6 @@ public class CuentaRequestDTO {
     @DecimalMin(value = "0.0", inclusive = true, message = "no puede ser negativo")
     private BigDecimal saldoInicial;
     private Boolean estado;
+
+    private String operation; 
 }

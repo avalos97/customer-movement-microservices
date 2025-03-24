@@ -45,7 +45,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nombre\": \"testoo\",\n    \"genero\": \"MASCULINO\",\n    \"edad\": 25,\n    \"identificacion\": \"90888776688\",\n    \"direccion\": \"Col Esmeralda Casa 23\",\n    \"telefono\": \"766534272\",\n    \"contrasena\": \"pass 2\",\n    \"estado\": true\n}",
+							"raw": "{\n    \"nombre\": \"JOSE MERINO\",\n    \"genero\": \"MASCULINO\",\n    \"edad\": 25,\n    \"identificacion\": \"908887766533\",\n    \"direccion\": \"Col Esmeralda Casa 23\",\n    \"telefono\": \"766534272\",\n    \"contrasena\": \"pass\",\n    \"estado\": false\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -53,7 +53,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/customer-service/clientes/ca1a9de9-e7e1-4b0a-89a7-8773767d3dd9",
+							"raw": "http://localhost:8080/customer-service/clientes/93a04ae1-8278-4d53-8150-922b72260616",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -62,7 +62,7 @@
 							"path": [
 								"customer-service",
 								"clientes",
-								"ca1a9de9-e7e1-4b0a-89a7-8773767d3dd9"
+								"93a04ae1-8278-4d53-8150-922b72260616"
 							]
 						}
 					},
@@ -95,7 +95,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/customer-service/clientes/2b10791d-601e-4cc1-8980-c28bb8b90daa",
+							"raw": "http://localhost:8080/customer-service/clientes/ca1a9de9-e7e1-4b0a-89a7-8773767d3dd9",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -104,7 +104,7 @@
 							"path": [
 								"customer-service",
 								"clientes",
-								"2b10791d-601e-4cc1-8980-c28bb8b90daa"
+								"ca1a9de9-e7e1-4b0a-89a7-8773767d3dd9"
 							]
 						}
 					},
@@ -172,7 +172,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"numeroCuenta\":749362,\n    \"clienteId\":\"ca1a9de9-e7e1-4b0a-89a7-8773767d3dd9\",\n    \"tipoCuenta\":\"CORRIENTE\",\n    \"saldoInicial\":1000\n}",
+							"raw": "{\n    \"numeroCuenta\":749300,\n    \"clienteId\":\"93a04ae1-8278-4d53-8150-922b72260616\",\n    \"tipoCuenta\":\"CORRIENTE\",\n    \"saldoInicial\":1000\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -209,7 +209,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8081/movement-service/cuentas/01918788-af03-4195-89c0-b6c4f5244fde/movimiento",
+							"raw": "http://localhost:8081/movement-service/cuentas/b785f2a6-34e9-4cd4-8bba-7bd4041b97ec/movimiento",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -218,7 +218,7 @@
 							"path": [
 								"movement-service",
 								"cuentas",
-								"01918788-af03-4195-89c0-b6c4f5244fde",
+								"b785f2a6-34e9-4cd4-8bba-7bd4041b97ec",
 								"movimiento"
 							]
 						}
@@ -232,7 +232,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"numeroCuenta\":749377,\n    \"clienteId\":\"ca1a9de9-e7e1-4b0a-89a7-8773767d3dd9\",\n    \"tipoCuenta\":\"CORRIENTE\",\n    \"saldoInicial\":1000,\n    \"estado\":true\n}",
+							"raw": "{\n    \"numeroCuenta\":749377,\n    \"clienteId\":\"ca1a9de9-e7e1-4b0a-89a7-8773767d3dd9\",\n    \"tipoCuenta\":\"CORRIENTE\",\n    \"saldoInicial\":10000,\n    \"estado\":true\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -240,7 +240,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8081/movement-service/cuentas/01918788-af03-4195-89c0-b6c4f5244fde",
+							"raw": "http://localhost:8081/movement-service/cuentas/b785f2a6-34e9-4cd4-8bba-7bd4041b97ec",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -249,7 +249,7 @@
 							"path": [
 								"movement-service",
 								"cuentas",
-								"01918788-af03-4195-89c0-b6c4f5244fde"
+								"b785f2a6-34e9-4cd4-8bba-7bd4041b97ec"
 							]
 						}
 					},

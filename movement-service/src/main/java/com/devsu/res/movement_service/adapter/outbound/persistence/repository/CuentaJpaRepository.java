@@ -14,12 +14,16 @@ import com.devsu.res.movement_service.adapter.outbound.persistence.entity.Cuenta
 @Repository
 public interface CuentaJpaRepository extends JpaRepository<CuentaEntity, UUID> {
 
-    @Query("SELECT c FROM CuentaEntity c " +
-           "INNER JOIN FETCH c.movimientos m " +
-           "WHERE c.clienteId = :clienteId " +
-           "AND (m IS NULL OR (m.fecha BETWEEN :fechaInicio AND :fechaFin))")
-    List<CuentaEntity> findCuentasWithMovimientosByClienteAndFecha(
-            @Param("clienteId") UUID clienteId,
-            @Param("fechaInicio") LocalDateTime fechaInicio,
-            @Param("fechaFin") LocalDateTime fechaFin);
+       @Query("SELECT c FROM CuentaEntity c " +
+                     "INNER JOIN FETCH c.movimientos m " +
+                     "WHERE c.clienteId = :clienteId " +
+                     "AND (m IS NULL OR (m.fecha BETWEEN :fechaInicio AND :fechaFin))")
+       List<CuentaEntity> findCuentasWithMovimientosByClienteAndFecha(
+                     @Param("clienteId") UUID clienteId,
+                     @Param("fechaInicio") LocalDateTime fechaInicio,
+                     @Param("fechaFin") LocalDateTime fechaFin);
+
+       @Query("SELECT DISTINCT c FROM CuentaEntity c LEFT JOIN FETCH c.movimientos WHERE c.clienteId = :clienteId")
+       List<CuentaEntity> findByClienteIdWithMovimientos(@Param("clienteId") UUID clienteId);
+
 }

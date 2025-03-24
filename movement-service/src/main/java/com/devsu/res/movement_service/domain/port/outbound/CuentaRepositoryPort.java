@@ -16,5 +16,6 @@ public interface CuentaRepositoryPort {
     List<Cuenta> findAll();
     void deleteById(UUID id);
     List<Cuenta> findAccountsWithMovementsByClientAndDate(UUID clienteId, LocalDateTime fechaInicio, LocalDateTime fechaFin);
+    List<Cuenta> findByClienteId(UUID clienteId);
 
 }

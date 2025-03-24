@@ -19,6 +19,7 @@ import com.devsu.res.movement_service.common.constant.ErrorCode;
 import com.devsu.res.movement_service.common.mapper.BaseMapper;
 import com.devsu.res.movement_service.common.util.DateUtil;
 import com.devsu.res.movement_service.domain.exception.CuentaNotFoundException;
+import com.devsu.res.movement_service.domain.exception.DomainException;
 import com.devsu.res.movement_service.domain.exception.SaldoNoDisponibleException;
 import com.devsu.res.movement_service.domain.model.Cuenta;
 import com.devsu.res.movement_service.domain.model.Movimiento;
@@ -47,6 +48,10 @@ public class CuentaServiceImpl extends BaseMapper<Cuenta, CuentaResponseDTO> imp
         Cuenta existing = cuentaRepositoryPort.findById(id)
                 .orElseThrow(() -> new CuentaNotFoundException(ErrorCode.RESOURCE_NOT_FOUND,
                         "Cuenta no encontrada con id: " + id));
+        if (!existing.getSaldoInicial().equals(requestDTO.getSaldoInicial())) {
+            throw new DomainException(
+                    "No se puede modificar el saldo inicial de una cuenta, realice un movimiento",ErrorCode.ILLEGAL_ARGUMENT_EXCEPTION);
+        }
         modelMapper.map(requestDTO, existing);
         Cuenta updated = cuentaRepositoryPort.save(existing);
         return this.entityToDto(updated);
@@ -119,12 +124,18 @@ public class CuentaServiceImpl extends BaseMapper<Cuenta, CuentaResponseDTO> imp
         movimiento.setFecha(DateUtil.now());
 
         Optional.ofNullable(cuenta.getMovimientos())
-            .orElseGet(ArrayList::new)
-            .add(movimiento);
-            
+                .orElseGet(ArrayList::new)
+                .add(movimiento);
+
         Cuenta updatedCuenta = cuentaRepositoryPort.save(cuenta);
 
-       return this.entityToDto(updatedCuenta);
+        return this.entityToDto(updatedCuenta);
+    }
+
+    @Override
+    public void deleteCuentaByClienteId(UUID clienteId) {
+        cuentaRepositoryPort.findByClienteId(clienteId)
+                .forEach(cuenta -> cuentaRepositoryPort.deleteById(cuenta.getId()));
     }
 
     @Override
@@ -135,5 +146,17 @@ public class CuentaServiceImpl extends BaseMapper<Cuenta, CuentaResponseDTO> imp
     @Override
     protected Class<CuentaResponseDTO> getDtoClass() {
         return CuentaResponseDTO.class;
+    }
+
+    /**
+     * Actualiza el estado de las cuentas asociadas a un cliente.
+     */
+    @Override
+    public void updateCuentaStatusByClienteId(UUID id, Boolean status) {
+        List<Cuenta> cuentas = cuentaRepositoryPort.findByClienteId(id);
+        cuentas.forEach(cuenta -> {
+            cuenta.setEstado(status);
+            cuentaRepositoryPort.save(cuenta);
+        });
     }
 }

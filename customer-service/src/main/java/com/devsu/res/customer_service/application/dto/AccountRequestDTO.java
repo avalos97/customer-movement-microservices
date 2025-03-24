@@ -30,4 +30,7 @@ public class AccountRequestDTO {
     @NotNull(message = "El saldo inicial no debe ser nulo")
     @DecimalMin(value = "0.0", inclusive = true, message = "El saldo inicial no puede ser negativo")
     private BigDecimal saldoInicial;
+
+    private String operation;
+    private boolean estado;
 }

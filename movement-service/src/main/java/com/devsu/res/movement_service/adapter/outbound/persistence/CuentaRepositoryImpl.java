@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Repository;
@@ -49,6 +50,22 @@ public class CuentaRepositoryImpl extends BaseMapper<CuentaEntity, Cuenta> imple
     }
 
     @Override
+    public List<Cuenta> findAccountsWithMovementsByClientAndDate(UUID clienteId, LocalDateTime fechaInicio,
+            LocalDateTime fechaFin) {
+        List<CuentaEntity> entities = cuentaJpaRepository.findCuentasWithMovimientosByClienteAndFecha(clienteId,
+                fechaInicio, fechaFin);
+        return this.entityListToDtoList(entities);
+    }
+
+    @Override
+    public List<Cuenta> findByClienteId(UUID clienteId) {
+        List<CuentaEntity> entities = cuentaJpaRepository.findByClienteIdWithMovimientos(clienteId);
+        return entities.stream()
+                .map(entity -> modelMapper.map(entity, Cuenta.class))
+                .collect(Collectors.toList());
+    }
+
+    @Override
     protected Class<CuentaEntity> getEntityClass() {
         return CuentaEntity.class;
     }
@@ -57,11 +74,5 @@ public class CuentaRepositoryImpl extends BaseMapper<CuentaEntity, Cuenta> imple
     protected Class<Cuenta> getDtoClass() {
         return Cuenta.class;
     }
-
-    @Override
-public List<Cuenta> findAccountsWithMovementsByClientAndDate(UUID clienteId, LocalDateTime fechaInicio, LocalDateTime fechaFin) {
-    List<CuentaEntity> entities = cuentaJpaRepository.findCuentasWithMovimientosByClienteAndFecha(clienteId, fechaInicio, fechaFin);
-    return this.entityListToDtoList(entities);
-}
 
 }

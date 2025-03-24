@@ -1,5 +1,6 @@
 package com.devsu.res.customer_service.application.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
@@ -45,11 +46,11 @@ public class ClienteServiceImpl extends BaseMapper<Cliente, ClienteResponseDTO> 
                 requestDTO.getDireccion(),
                 requestDTO.getTelefono(),
                 requestDTO.getContrasena(),
-                requestDTO.getEstado()
-        );
+                requestDTO.getEstado());
         ClienteResponseDTO clienteResponse = createCliente(clienteRequest);
         AccountRequestDTO cuentaRequest = requestDTO.getAccount();
         cuentaRequest.setClienteId(clienteResponse.getId());
+        cuentaRequest.setOperation("CREATE");
         clienteKafkaProducer.sendAccountMessage(cuentaRequest);
         return clienteResponse;
     }
@@ -57,25 +58,44 @@ public class ClienteServiceImpl extends BaseMapper<Cliente, ClienteResponseDTO> 
     @Override
     public ClienteResponseDTO updateCliente(UUID id, ClienteRequestDTO requestDTO) {
         Cliente existing = clienteRepositoryPort.findById(id)
-                .orElseThrow(() -> new ClienteNotFoundException(ErrorCode.RESOURCE_NOT_FOUND, "Cliente no encontrado con id: " + id));
+                .orElseThrow(() -> new ClienteNotFoundException(ErrorCode.RESOURCE_NOT_FOUND,
+                        "Cliente no encontrado con id: " + id));
+
+        Boolean previousState = existing.getEstado();
         modelMapper.map(requestDTO, existing);
         Cliente updated = clienteRepositoryPort.save(existing);
-        return this.entityToDto(updated);
+        ClienteResponseDTO clienteResponse = this.entityToDto(updated);
+        if (!previousState.equals(updated.getEstado())) {
+            AccountRequestDTO cuentaRequest = new AccountRequestDTO();
+            cuentaRequest.setClienteId(id);
+            cuentaRequest.setOperation("UPDATE_STATUS");
+            cuentaRequest.setSaldoInicial(BigDecimal.ZERO);
+            cuentaRequest.setEstado(updated.getEstado());
+            clienteKafkaProducer.sendAccountMessage(cuentaRequest);
+        }
+
+        return clienteResponse;
     }
 
     @Override
     public ClienteResponseDTO getClienteById(UUID id) {
         Cliente cliente = clienteRepositoryPort.findById(id)
-        .orElseThrow(() -> new ClienteNotFoundException(ErrorCode.RESOURCE_NOT_FOUND, "Cliente no encontrado con id: " + id));
+                .orElseThrow(() -> new ClienteNotFoundException(ErrorCode.RESOURCE_NOT_FOUND,
+                        "Cliente no encontrado con id: " + id));
         return this.entityToDto(cliente);
     }
 
     @Override
     public void deleteCliente(UUID id) {
         Cliente cliente = clienteRepositoryPort.findById(id)
-        .orElseThrow(() -> new ClienteNotFoundException(ErrorCode.RESOURCE_NOT_FOUND, "Cliente no encontrado con id: " + id));
+                .orElseThrow(() -> new ClienteNotFoundException(
+                        ErrorCode.RESOURCE_NOT_FOUND, "Cliente no encontrado con id: " + id));
         clienteRepositoryPort.deleteById(cliente.getId());
-
+        AccountRequestDTO accountDeletionRequest = new AccountRequestDTO();
+        accountDeletionRequest.setClienteId(cliente.getId());
+        accountDeletionRequest.setOperation("DELETE");
+        accountDeletionRequest.setSaldoInicial(BigDecimal.ZERO);
+        clienteKafkaProducer.sendAccountMessage(accountDeletionRequest);
     }
 
     @Override
@@ -83,7 +103,6 @@ public class ClienteServiceImpl extends BaseMapper<Cliente, ClienteResponseDTO> 
         List<Cliente> clientes = clienteRepositoryPort.findAll();
         return this.entityListToDtoList(clientes);
     }
-
 
     @Override
     protected Class<Cliente> getEntityClass() {

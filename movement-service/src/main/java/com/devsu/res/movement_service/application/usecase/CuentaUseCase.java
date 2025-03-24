@@ -10,9 +10,12 @@ import com.devsu.res.movement_service.application.dto.MovimientoRequestDTO;
 public interface CuentaUseCase {
     CuentaResponseDTO createCuenta(CuentaRequestDTO requestDTO);
     CuentaResponseDTO updateCuenta(UUID id, CuentaRequestDTO requestDTO);
+    void updateCuentaStatusByClienteId(UUID id, Boolean status);
     CuentaResponseDTO getCuentaById(UUID id);
     void deleteCuenta(UUID id);
     List<CuentaResponseDTO> getAllCuentas();
     CuentaResponseDTO registrarMovimiento(UUID cuentaId, MovimientoRequestDTO requestDTO);
+    void deleteCuentaByClienteId(UUID clienteId);
+
 
 }

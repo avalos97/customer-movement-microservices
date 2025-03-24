@@ -42,12 +42,12 @@ CREATE TABLE movimiento (
     CONSTRAINT fk_cuenta FOREIGN KEY (cuenta_id) REFERENCES cuenta(id) ON DELETE CASCADE
 );
 
-INSERT INTO cuenta
-(id, numero_cuenta, cliente_id, tipo_cuenta, saldo_inicial, estado)
-VALUES('e20795b1-bb63-4f8d-936f-e6390db283ce'::uuid, 638493, '2746fef3-2155-470d-9c29-743a30f1550e'::uuid, 'AHORRO', 2000.00, true);
-INSERT INTO cuenta
-(id, numero_cuenta, cliente_id, tipo_cuenta, saldo_inicial, estado)
-VALUES('c949ace2-fcc7-4590-b3e8-e0eb2fc04c12'::uuid, 927384, '99a16961-b0c6-49fe-9c3b-6937866ec991'::uuid, 'CORRIENTE', 1000.00, true);
+INSERT INTO persona
+(id, nombre, genero, edad, identificacion, direccion, telefono)
+VALUES('2746fef3-2155-470d-9c29-743a30f1550e'::uuid, 'Christian Avalos', 'MASCULINO', 25, '90888776655', 'Col Esmeralda Casa 23', '766534272');
+INSERT INTO persona
+(id, nombre, genero, edad, identificacion, direccion, telefono)
+VALUES('99a16961-b0c6-49fe-9c3b-6937866ec991'::uuid, 'Mariana Lopez', 'FEMENINO', 30, '67888776656', 'Col Escalon Casa 30', '792637125');
 INSERT INTO cliente
 (persona_id, contrasena, estado)
 VALUES('2746fef3-2155-470d-9c29-743a30f1550e'::uuid, '12345', true);
